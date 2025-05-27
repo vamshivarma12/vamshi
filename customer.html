@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Profile</title>
+  <link rel="stylesheet" href="customer.css">
+</head>
+<body>
+  <!-- Header (Full Width) -->
+<header class="header">
+  <div class="left-section">
+      <img src="ats.png" alt="Logo" class="logo">
+      <span class="theme-toggle">🌙</span>
+      <div class="search-box">
+          <input type="text" placeholder="Search....">
+          <button><span class="search-icon">🔍</span></button>
+      </div>
+  </div>
+  
+  <div class="right-section">
+      <span class="notification">🔔</span>
+      
+      <div class="language-select">
+          <span>🌐</span> English 
+      </div>
+      
+      <div class="status">
+          <span class="active-dot"></span> Active
+      </div>
+      
+      <div class="user-profile">
+          <img src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1745848535~exp=1745852135~hmac=0ff4d157a4d5e3b84a3b5cab5c9cf2c8f329c03d3837cbc03570931840f3fca4&w=1380" alt="User">
+          <div class="user-info">
+            <div class="username">Guest<span class="online-dot"></span></div>
+            <div id="time">18:16:06</div>
+          </div>
+      </div>
+      
+      <div class="menu-toggle">≡</div>
+  </div>
+</header>
+<script>
+  // Update time every second
+  function updateTime() {
+    const now = new Date();
+    document.getElementById("time").textContent = now.toLocaleTimeString('en-GB');
+  }
+  setInterval(updateTime, 1000);
+  updateTime();
+</script>
+
+
+<!-- Sidebar + Main Content -->
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <nav>
+      
+      <a href="dashboard.html" target="_blank"> <i class="fas fa-home"></i> Home</a>
+      <a href="customer.html" target="_blank"><i class="fas fa-user"></i> Customers</a>
+      <a href="Product.html"><i class="fas fa-box"></i> Product</a>
+      <a href="#"><i class="fas fa-comments"></i> Feedback </a>
+      <a href="#"><i class="fas fa-glass-whiskey"></i> Milk Collection</a>
+      <a href="#"> <i class="fas fa-dollar-sign"></i> Revenue</a>
+      <a href="login.html"> <i class="fa fa-sign-out""></i> Logout</a>
+    </nav>
+  </aside>
+
+    <div class="profile-container">
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-img-wrapper">
+              <img src="https://via.placeholder.com/100" alt="Profile Picture" id="profileImage" class="profile-img">
+              <label for="uploadPhoto" class="change-photo">Change</label>
+              <input type="file" id="uploadPhoto" accept="image/*" />
+            </div>
+            <div class="profile-name" id="profileName">John Doe</div>
+            <div class="profile-role">Customer</div>
+            <button class="edit-btn" onclick="toggleEdit()">Edit</button>
+          </div>
+    
+          <form id="profileForm">
+            <div class="profile-info">
+              <div class="info-group">
+                <label>Full Name:</label>
+                <span class="text" id="nameText">John Doe</span>
+                <input class="edit-input" id="nameInput" type="text" value="John Doe" />
+              </div>
+              <div class="info-group">
+                <label>Email:</label>
+                <span class="text" id="emailText">john.doe@example.com</span>
+                <input class="edit-input" id="emailInput" type="email" value="john.doe@example.com" />
+              </div>
+              <div class="info-group">
+                <label>Phone:</label>
+                <span class="text" id="phoneText">+1 234 567 890</span>
+                <input class="edit-input" id="phoneInput" type="text" value="+1 234 567 890" />
+              </div>
+              <div class="info-group">
+                <label>Address:</label>
+                <span class="text" id="addressText">123 Main Street, City, Country</span>
+                <input class="edit-input" id="addressInput" type="text" value="123 Main Street, City, Country" />
+              </div>
+            </div>
+    
+            <div class="edit-actions hidden" id="editActions">
+              <button type="button" onclick="saveChanges()">Save</button>
+              <button type="button" onclick="cancelEdit()">Cancel</button>
+            </div>
+          </form>
+        </div>
+    
+        <div class="activity-card">
+          <div class="activity-header" onclick="toggleActivities()">
+            Recent Activities
+            <span id="toggle-arrow">▼</span>
+          </div>
+          <ul class="activity-list" id="activityList">
+            <li>Logged in - <span>2 minutes ago</span></li>
+            <li>Updated shipping address - <span>1 hour ago</span></li>
+            <li>Placed order #12345 - <span>Yesterday</span></li>
+            <li>Changed password - <span>2 days ago</span></li>
+            <li>Contacted support - <span>1 week ago</span></li>
+          </ul>
+        </div>
+      </div>
+    
+      <script>
+        let isEditing = false;
+    
+        function toggleEdit() {
+          isEditing = !isEditing;
+          const inputs = document.querySelectorAll('.edit-input');
+          const texts = document.querySelectorAll('.text');
+          const actions = document.getElementById('editActions');
+    
+          inputs.forEach(i => i.style.display = isEditing ? 'block' : 'none');
+          texts.forEach(t => t.style.display = isEditing ? 'none' : 'inline');
+          actions.classList.toggle('hidden', !isEditing);
+        }
+    
+        function cancelEdit() {
+          toggleEdit();
+        }
+    
+        function saveChanges() {
+          const name = document.getElementById('nameInput').value;
+          const email = document.getElementById('emailInput').value;
+          const phone = document.getElementById('phoneInput').value;
+          const address = document.getElementById('addressInput').value;
+    
+          document.getElementById('nameText').textContent = name;
+          document.getElementById('emailText').textContent = email;
+          document.getElementById('phoneText').textContent = phone;
+          document.getElementById('addressText').textContent = address;
+          document.getElementById('profileName').textContent = name;
+    
+          toggleEdit();
+        }
+    
+        function toggleActivities() {
+          const list = document.getElementById("activityList");
+          const arrow = document.getElementById("toggle-arrow");
+          list.classList.toggle("hidden");
+          arrow.textContent = list.classList.contains("hidden") ? "►" : "▼";
+        }
+    
+        const uploadInput = document.getElementById('uploadPhoto');
+        const profileImg = document.getElementById('profileImage');
+    
+        uploadInput.addEventListener('change', function () {
+          const file = this.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              profileImg.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      </script>
+</body>
+</html>

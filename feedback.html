@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Feedback Form</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- Header (Full Width) -->
+<header class="header">
+    <div class="left-section">
+        <img src="ats.png" alt="Logo" class="logo">
+        <span class="theme-toggle">🌙</span>
+        <div class="search-box">
+            <input type="text" placeholder="Search....">
+            <button><span class="search-icon">🔍</span></button>
+        </div>
+    </div>
+    
+    <div class="right-section">
+        <span class="notification">🔔</span>
+        
+        <div class="language-select">
+            <span>🌐</span> English 
+        </div>
+        
+        <div class="status">
+            <span class="active-dot"></span> Active
+        </div>
+        
+        <div class="user-profile">
+            <img src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg?t=st=1745848535~exp=1745852135~hmac=0ff4d157a4d5e3b84a3b5cab5c9cf2c8f329c03d3837cbc03570931840f3fca4&w=1380" alt="User">
+            <div class="user-info">
+              <div class="username">Guest<span class="online-dot"></span></div>
+              <div id="time">18:16:06</div>
+            </div>
+        </div>
+        
+        <div class="menu-toggle">≡</div>
+    </div>
+  </header>
+  <script>
+    // Update time every second
+    function updateTime() {
+      const now = new Date();
+      document.getElementById("time").textContent = now.toLocaleTimeString('en-GB');
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+  </script>
+  
+  
+  <!-- Sidebar + Main Content -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <nav>
+        
+        <a href="dashboard.html" target="_blank"> <i class="fas fa-home"></i> Home</a>
+        <a href="customer.html" target="_blank"><i class="fas fa-user"></i> Customers</a>
+        <a href="Product.html"><i class="fas fa-box"></i> Product</a>
+        <a href="#"><i class="fas fa-comments"></i> Feedback </a>
+        <a href="#"><i class="fas fa-glass-whiskey"></i> Milk Collection</a>
+        <a href="#"> <i class="fas fa-dollar-sign"></i> Revenue</a>
+        <a href="login.html"> <i class="fa fa-sign-out""></i> Logout</a>
+      </nav>
+    </aside>
+  
+  <div class="container">
+    <form class="feedback-form" action="submit_feedback.php" method="POST">
+      <h1>Product Feedback</h1>
+
+      <div class="form-group">
+        <label for="name">Customer Name<span>*</span></label>
+        <input type="text" id="name" name="name" required placeholder="John Doe" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address<span>*</span></label>
+        <input type="email" id="email" name="email" required placeholder="example@domain.com" />
+      </div>
+
+      <div class="form-group">
+        <label for="product">Product Name<span>*</span></label>
+        <input type="text" id="product" name="product" required placeholder="e.g., Milk,Curd" />
+      </div>
+
+      <div class="form-group">
+        <label for="rating">Rating<span>*</span></label>
+        <select id="rating" name="rating" required>
+          <option value="">Choose rating</option>
+          <option value="5">⭐️⭐️⭐️⭐️⭐️ - Excellent</option>
+          <option value="4">⭐️⭐️⭐️⭐️ - Good</option>
+          <option value="3">⭐️⭐️⭐️ - Average</option>
+          <option value="2">⭐️⭐️ - Poor</option>
+          <option value="1">⭐️ - Very Poor</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="review">Your Feedback<span>*</span></label>
+        <textarea id="review" name="review" rows="6" required placeholder="Share your experience with the product..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Submit Feedback</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dairy Product Revenue Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Dairy Product Revenue Overview</h1>
+    <canvas id="revenueChart"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+  <script>
+  const ctx = document.getElementById('revenueChart').getContext('2d');
+
+// Revenue data in INR
+const revenueData = {
+  labels: ['Milk', 'Curd', 'Ice Cream'],
+  datasets: [
+    {
+      label: 'Annual Revenue (₹ Crore)',
+      data: [15000, 1778.87, 3000],
+      backgroundColor: '#4e73df'
+    },
+    {
+      label: 'Monthly Revenue (₹ Crore)',
+      data: [1250, 148.24, 250],
+      backgroundColor: '#1cc88a'
+    },
+    {
+      label: 'Daily Revenue (₹ Crore)',
+      data: [41.1, 4.94, 8.22],
+      backgroundColor: '#36b9cc'
+    }
+  ]
+};
+
+const revenueChart = new Chart(ctx, {
+  type: 'bar',
+  data: revenueData,
+  options: {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          callback: function(value) {
+            return '₹' + value + ' Cr';
+          }
+        }
+      }
+    },
+    plugins: {
+      title: {
+        display: true,
+        text: 'Revenue Breakdown for Dairy Products',
+        font: {
+          size: 18
+        }
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return context.dataset.label + ': ₹' + context.parsed.y + ' Cr';
+          }
+        }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>

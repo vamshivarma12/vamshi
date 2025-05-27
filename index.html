@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dairy Products</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="left-section">
+      <h1>Dairy Store</h1>
+    </div>
+    <div class="right-section">
+      <div class="cart-icon">
+        🛒 <span id="cart-count">0</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="product-container">
+    <h2>Dairy Products</h2>
+    <div class="product-grid">
+
+      <!-- Sample Card (repeat for all products) -->
+      <a href="product-detail.html?id=milk" class="product-card">
+        <img src="https://cdn.pixabay.com/photo/2016/05/02/10/39/milk-1365285_1280.jpg" alt="Milk" />
+        <h3>Milk</h3>
+        <p>₹50 / litre</p>
+        <button class="add-cart-btn" type="button">Add to Cart</button>
+      </a>
+
+      <a href="product-detail.html?id=cheese" class="product-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJKunr9Vqo6Bj_uH29GKo22S1aL352lRb0DQ&s" alt="Cheese" />
+        <h3>Cheese</h3>
+        <p>₹120 / 200g</p>
+        <button class="add-cart-btn" type="button">Add to Cart</button>
+      </a>
+
+      <a href="product-detail.html?id=yogurt" class="product-card">
+        <img src="https://cdn.pixabay.com/photo/2016/10/25/12/28/yogurt-1761026_1280.jpg" alt="Yogurt" />
+        <h3>Yogurt</h3>
+        <p>₹30 / cup</p>
+        <button class="add-cart-btn" type="button">Add to Cart</button>
+      </a>
+
+      <!-- Add more as needed... -->
+
+    </div>
+  </main>
+
+  <script>
+    let cartCount = 0;
+    document.querySelectorAll('.add-cart-btn').forEach(button => {
+      button.addEventListener('click', event => {
+        event.preventDefault(); // prevent link click
+        cartCount++;
+        document.getElementById('cart-count').textContent = cartCount;
+      });
+    });
+  </script>
+</body>
+</html>
